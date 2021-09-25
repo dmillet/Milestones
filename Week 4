@@ -1,0 +1,27 @@
+import projectmodule
+
+(blackboxnames,blackboxvotes) = projectmodule.readsurvey('Restaurants.csv')
+
+#Pluratiry only counts the highest rated, only count #1 votes
+king = []
+
+totvote = {'Little Oven Pizza': 0, 'JR Tacos': 0, 'Sam Cafe': 0, 'Taste of Little India': 0, 'Jantz':0} #stores the total vote into a dictonary
+
+for a in range(0, len(blackboxvotes)): #goes over each list and sorts to according categories. MAIN VOTE TALLY TAKER
+    if blackboxvotes[a][0] == 1:
+        totvote['Little Oven Pizza'] += 1
+    if blackboxvotes[a][1] == 1:
+        totvote['JR Tacos'] += 1
+    if blackboxvotes[a][2] == 1:
+        totvote['Sam Cafe'] += 1
+    if blackboxvotes[a][3] == 1:
+        totvote['Taste of Little India'] += 1
+    if blackboxvotes[a][4] == 1:
+        totvote['Jantz'] += 1
+ 
+winner = max(totvote, key = totvote.get) #the winner comes from the dict. This finds the max in dictonary with its corresponding key       
+
+king.append(winner)
+
+print('The winner of the vote is {}!'.format(king[0])) #trying to get used to this form of formatting. adds desired input seamlessly
+#prints the winner name with the amount of votes they got
