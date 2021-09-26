@@ -1,0 +1,16 @@
+import projectmodule
+
+(blackboxnames,blackboxvotes) = projectmodule.readsurvey('Restaurants.csv')
+
+(results, blackboxwinner, blackboxvotemax) = projectmodule.plurality(blackboxnames,blackboxvotes)
+
+
+
+for b in range(0, len(blackboxvotes)): #for each list in blackboxvotes
+    if blackboxvotes[b].count(1) == 0: #Checks and declares lists with no top rated restaurants (restaurants rated as #1)
+        print('For ballot {}, no restaurant was ranked as the top.'.format(b+1)) #add +1 bc the count starts at 0
+        
+    for c in range(0, len(blackboxvotes[b])): #do for each item in list blackboxvotes[b]
+        if blackboxvotes[b][c] == 1: #if a restaurant is rated as top, print the associated name.
+            print('For ballot {}, "{}" was the top ranked option.'.format(b+1, blackboxnames[c]))
+
