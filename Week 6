@@ -1,0 +1,27 @@
+#w6 ARRRRHGHGHGHHUUUGGGHGHGUUGHEUEEUGHGGHHGH
+
+file = open('cities.txt', 'r') #opens file
+
+pick = input('Enter the city you are looking for: ') #input input input input !!!
+pick = pick.capitalize() #capitalizes so lowercase does not mess up code
+
+ev = file.read() #reads ENTIRE file
+ev = ev.split('\n') #splits ALL of the rows into seperate lists ex: a\tb\nc\td\n... -----> [a\tb, c\td, ...]
+
+for cont in range(0, len(ev)):
+    ev[cont] = ev[cont].split('\t') #splits ALL of the lists into components ex: [long, lat, city, province/state, country ]
+
+for cont in range(0, len(ev)): 
+    if ev[cont][2] == pick: #when the pick is same as city name
+
+        long = ev[cont][0]
+        long = long.replace('°', ' degrees ').replace(long[-1], ' minutes {}'.format(long[-1])) #reformats degree symbol and minutes to string
+        lat = ev[cont][1]
+        lat = lat.replace('°', ' degrees ').replace(lat[-1], ' minutes {}'.format(lat[-1]))
+        print('{} is {} and {}'.format(pick, long, lat))        
+        break
+    
+    if cont == len(ev) - 1: #when at end (which is empty) print city not found
+        print('City not found!')
+
+file.close() #closes file
